@@ -26,6 +26,20 @@ Step #1 : Domain Controller installation
 Install-WindowsFeature AD-Domain-Services -IncludeManagementTools 
 ```
 
+3. Setting the DNS on DC and Workstation 
+
+Check the IP setup
+```shell 
+Get-NetIPAddress
+```
+
+Set the DNS 
+```shell 
+Set-DNSClientServerAddress -InterfaceIndex <index interface of your IP> -ServerAddress <DC IP>
+```
 
 
-
+Command to join Workstation to DC (run in Workstation)
+```shell 
+Add-Computer -Domainname rjz.com -Credential rjz\Administrator -Force Restart
+```
